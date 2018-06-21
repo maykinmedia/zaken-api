@@ -3,7 +3,7 @@ ZaakRegistratieComponent API - referentie implementatie
 =======================================================
 
 :Version: 0.1.0
-:Source: https://TODO
+:Source: https://github.com/maykinmedia/gemma-zaakregistratiecomponent
 :Keywords: zaken, zaakgericht werken, GEMMA, RGBZ
 :PythonVersion: 3.6
 
@@ -30,8 +30,8 @@ commands.
 References
 ==========
 
-* `Issues <https://TODO>`_
-* `Code <https://TODO>`_
+* `Issues <https://github.com/maykinmedia/gemma-zaakregistratiecomponent/issues>`_
+* `Code <https://github.com/maykinmedia/gemma-zaakregistratiecomponent/>`_
 
 
 .. |build-status| image:: http://jenkins.maykin.nl/buildStatus/icon?job=zrc
