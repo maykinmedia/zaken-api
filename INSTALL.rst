@@ -97,6 +97,46 @@ using `gulp`_. By default this will compile the files if they change.
 .. _gulp: https://gulpjs.com/
 
 
+Installing the database
+------------------------
+
+1. Copy ``src/zrc/conf/local_example.py`` to ``src/zrc/conf/local.py``:
+
+   .. code-block:: bash
+
+       $ cp src/zrc/conf/local_example.py src/zrc/conf/local.py
+
+2. Edit ``local.py`` and place correct values for the presented settings.
+
+   .. code-block:: python
+
+       DATABASES = {
+           'default': {
+               'ENGINE': 'django.contrib.gis.db.backends.postgis',
+               'NAME': <name_of_your_pgSQL_db>,
+               'USER': <user_that_can_access_db>,
+               'PASSWORD': <password_of_this_user>,
+               'HOST': '',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+               'PORT': '',  # Set to empty string for default.
+           }
+       }
+
+3. Launch the migration process
+
+   .. code-block:: bash
+
+     (env) $ python src/manage.py migrate
+
+**Note:** You have to enable PostGIS in your database.
+You can do it with a single SQL command:
+
+        .. code-block:: bash
+
+          CREATE EXTENSION postgis;
+
+**Note:** If you are making any other local, machine specific, changes, add them to ``local.py``.
+
+
 Update installation
 -------------------
 
