@@ -3160,6 +3160,44 @@ paths:
           type: string
           enum:
           - EPSG:4326
+      - name: include
+        in: query
+        description: Sluit de gespecifieerde gerelateerde resources in in het antwoord. Indien de waarde '*' opgegeven is, dan worden alle mogelijke inclusions opgenomen.
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - zaaktype
+            - hoofdzaak
+            - deelzaken
+            - eigenschappen
+            - rollen
+            - status
+            - zaakinformatieobjecten
+            - zaakobjecten
+            - resultaat
+            - hoofdzaak.zaaktype
+            - hoofdzaak.status
+            - hoofdzaak.status.statustype
+            - hoofdzaak.resultaat
+            - hoofdzaak.resultaat.resultaattype
+            - deelzaken.zaaktype
+            - deelzaken.status
+            - deelzaken.status.statustype
+            - deelzaken.resultaat
+            - deelzaken.resultaattype
+            - eigenschappen.eigenschap
+            - rollen.roltype
+            - status.statustype
+            - zaakinformatieobjecten.informatieobject
+            - zaakinformatieobjecten.informatieobject.informatieobjecttype
+            - resultaat.resultaattype
+            - '*'
+        style: form
+        explode: false
+
       responses:
         '200':
           description: OK
@@ -3183,6 +3221,7 @@ paths:
                 required:
                 - count
                 - results
+                - inclusions
                 type: object
                 properties:
                   count:
@@ -3199,6 +3238,70 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Zaak'
+                  inclusions:
+                    type: object
+                    properties:
+                      'catalogi:zaaktype':
+                        type: array
+                        items:
+                          oneOf:
+                          - $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/catalogi-api/1.1.0/src/openapi.yaml#/components/schemas/ZaakType'
+                          - $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/catalogi-api/1.0.0/src/openapi.yaml#/components/schemas/ZaakType'
+                      'zaken:zaak':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Zaak'
+                      'zaken:zaakeigenschap':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ZaakEigenschap'
+                      'zaken:rol':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Rol'
+                      'zaken:status':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Status'
+                      'zaken:zaakinformatieobject':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ZaakInformatieObject'
+                      'zaken:zaakobject':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ZaakObject'
+                      'zaken:resultaat':
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Resultaat'
+                      'catalogi:statustype':
+                        type: array
+                        items:
+                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/catalogi-api/1.1.0/src/openapi.yaml#/components/schemas/StatusType'
+                      'catalogi:resultaattype':
+                        type: array
+                        items:
+                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/catalogi-api/1.1.0/src/openapi.yaml#/components/schemas/ResultaatType'
+                      'catalogi:eigenschap':
+                        type: array
+                        items:
+                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/catalogi-api/1.1.0/src/openapi.yaml#/components/schemas/Eigenschap'
+                      'catalogi:roltype':
+                        type: array
+                        items:
+                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/catalogi-api/1.1.0/src/openapi.yaml#/components/schemas/RolType'
+                      'documenten:enkelvoudiginformatieobject':
+                        type: array
+                        items:
+                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/documenten-api/stable/1.2.0/src/openapi.yaml#/components/schemas/EnkelvoudigInformatieObject'
+                      'catalogi:informatieobjecttype':
+                        type: array
+                        items:
+                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/catalogi-api/1.1.0/src/openapi.yaml#/components/schemas/InformatieObjectType'
+
+
+
         '400':
           $ref: '#/components/responses/400'
         '401':
