@@ -3294,7 +3294,7 @@ paths:
                       'documenten:enkelvoudiginformatieobject':
                         type: array
                         items:
-                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/documenten-api/stable/1.2.0/src/openapi.yaml#/components/schemas/EnkelvoudigInformatieObject'
+                          $ref: 'https://raw.githubusercontent.com/VNG-Realisatie/documenten-api/1.2.0-alpha3/src/openapi.yaml#/components/schemas/EnkelvoudigInformatieObject'
                       'catalogi:informatieobjecttype':
                         type: array
                         items:
